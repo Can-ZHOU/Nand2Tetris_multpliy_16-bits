@@ -1,0 +1,46 @@
+CHIP mult16{
+	IN a[16], b[16];
+	OUT out[16], of;
+
+PARTS:
+
+//check the input, if there has negative input turn it into positive opposite number.
+
+	Ng(in=a, out=nga);
+	negandposconversion(in=a, out=aout);
+	Mux16(a=a, b=aout, sel=nga, out=aa);
+
+	Ng(in=b, out=ngb);
+	negandposconversion(in=b, out=bout);
+	Mux16(a=b, b=bout, sel=ngb, out=bb);
+
+//identify the output(product)'s sign based on the signs of input.
+
+	identifysign(a=a, b=b, out=signout);
+
+//take positive multiply and check whether overflow occur during the process.
+//in positivemult, the overflow may occor in shift and addition.
+//for shift, I check the one which moved out to the left. If it is 1, there has an overflow.
+//for addition, I check the final FullAdder's carry. If it is 1, there has an overflow.
+//last, check the out's sign bit. As it's positive multiply, if product's sign bit is 1, there has an overflow.
+  	
+	positivemult(a=aa, b=bb, out=out1, of=of1);
+
+//there should be noted that positivemult can only check the range from -(2^15-1)~(2^15-1).
+//so I check -2^15 separately by use boundcheck.
+//the output of boundcheck is true only if sign of final output is 0 (negative number) and the mult output euqal to -2^15.
+
+	boundcheck(in=out1, sign=signout, posbound=posbound);
+
+//if it is negative product and equal to -2^15, the of is 0, else the value of of is based on the positivemult's of. 
+
+	Mux(a=of1, b=false, sel=posbound, out=of);
+
+//select the final output is positve output or negative output.
+	negandposconversion(in=out1, out=out2);
+	Mux16(a=out2, b=out1, sel=signout, out=out);
+}
+
+
+
+
