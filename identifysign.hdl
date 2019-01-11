@@ -1,0 +1,11 @@
+//identify the sign of output.
+//if both inputs have the same sign, the out equal to 1.
+//if the two inputs have the different sign, the out equal to 0.
+
+CHIP identifysign{
+	IN a[16], b[16];
+	OUT out;
+PARTS:
+	Xor(a=a[15], b=b[15], out=out1);
+	Not(in=out1, out=out);
+}

@@ -1,0 +1,207 @@
+CHIP positivemult{
+	IN a[16], b[16];
+	OUT out[16], of;
+PARTS:
+
+//shift 2ed bit to left one time with the overflow check. Then add with previous multonebit product with the overflow check.
+
+	multonebit(a=a, b=b[0], out=out1);	
+	multonebit(a=a, b=b[1], out=out2);
+	shift(in=out2, check=false, out=shiftout2, ofcheck=of1);
+	Add16check(a=out1, b=shiftout2, addofpre=false, out=addout1, addof=addof1);
+
+//shift 3rd bits to left two times with the overflow check.Then add with previous multonebit product with the overflow check.
+
+	multonebit(a=a, b=b[2], out=out3);	
+	shift(in=out3, check=of1, out=shift1, ofcheck=of2);
+	shift(in=shift1, check=of2, out=shiftout3, ofcheck=of3);
+	Add16check(a=addout1, addofpre=addof1, b=shiftout3, out=addout2, addof=addof2);
+
+//shift 4th bits to left three times with the overflow check.Then add with previous multonebit product with the overflow check.
+
+	multonebit(a=a, b=b[3], out=out4);	
+	shift(in=out4, check=of3, out=shift2, ofcheck=of4);
+	shift(in=shift2, check=of4, out=shift3, ofcheck=of5);
+	shift(in=shift3, check=of5, out=shiftout4, ofcheck=of6);
+	Add16check(a=addout2, addofpre=addof2, b=shiftout4, out=addout3, addof=addof3);
+
+//shift 5th bits to left four times with the overflow check.Then add with previous multonebit product with the overflow check.
+
+	multonebit(a=a, b=b[4], out=out5);	
+	shift(in=out5, check=of6, out=shift4, ofcheck=of7);
+	shift(in=shift4, check=of7, out=shift5, ofcheck=of8);
+	shift(in=shift5, check=of8, out=shift6, ofcheck=of9);
+	shift(in=shift6, check=of9, out=shiftout5, ofcheck=of10);
+	Add16check(a=addout3, addofpre=addof3, b=shiftout5, out=addout4, addof=addof4);
+
+//shift 6th bits to left five times with the overflow check.Then add with previous multonebit product with the overflow check.
+
+	multonebit(a=a, b=b[5], out=out6);	
+	shift(in=out6, check=of10, out=shift7, ofcheck=of11);
+	shift(in=shift7, check=of11, out=shift8, ofcheck=of12);
+	shift(in=shift8, check=of12, out=shift9, ofcheck=of13);
+	shift(in=shift9, check=of13, out=shift10, ofcheck=of14);
+	shift(in=shift10, check=of14, out=shiftout6, ofcheck=of15);
+	Add16check(a=addout4, addofpre=addof4, b=shiftout6, out=addout5, addof=addof5);
+
+//shift 7th bits to left six times with the overflow check.Then add with previous multonebit product with the overflow check.
+
+	multonebit(a=a, b=b[6], out=out7);	
+	shift(in=out7, check=of15, out=shift11, ofcheck=of0);
+	shift(in=shift11, check=of0, out=shift12, ofcheck=of16);
+	shift(in=shift12, check=of16, out=shift13, ofcheck=of17);
+	shift(in=shift13, check=of17, out=shift14, ofcheck=of18);
+	shift(in=shift14, check=of18, out=shift15, ofcheck=of19);
+	shift(in=shift15, check=of19, out=shiftout7, ofcheck=of20);
+	Add16check(a=addout5, addofpre=addof5, b=shiftout7, out=addout6, addof=addof6);
+
+//shift 8th bits to left seven times with the overflow check.Then add with previous multonebit product with the overflow check.
+
+	multonebit(a=a, b=b[7], out=out8);	
+	shift(in=out8, check=of20, out=shift16, ofcheck=of01);
+	shift(in=shift16, check=of01, out=shift17, ofcheck=of21);
+	shift(in=shift17, check=of21, out=shift18, ofcheck=of22);
+	shift(in=shift18, check=of22, out=shift19, ofcheck=of23);
+	shift(in=shift19, check=of23, out=shift20, ofcheck=of24);
+	shift(in=shift20, check=of24, out=shift21, ofcheck=of25);
+	shift(in=shift21, check=of25, out=shiftout8, ofcheck=of26);
+	Add16check(a=addout6, b=shiftout8, addofpre=addof6, out=addout7, addof=addof7);
+
+//shift 9th bits to left eight times with the overflow check.Then add with previous multonebit product with the overflow check.
+
+	multonebit(a=a, b=b[8], out=out9);	
+	shift(in=out9, check=of26, out=shift22, ofcheck=of27);
+	shift(in=shift22, check=of27, out=shift23, ofcheck=of28);
+	shift(in=shift23, check=of28, out=shift24, ofcheck=of29);
+	shift(in=shift24, check=of29, out=shift25, ofcheck=of30);
+	shift(in=shift25, check=of30, out=shift26, ofcheck=of31);
+	shift(in=shift26, check=of31, out=shift27, ofcheck=of32);
+	shift(in=shift27, check=of32, out=shift28, ofcheck=of33);
+	shift(in=shift28, check=of33, out=shiftout9, ofcheck=of34);
+	Add16check(a=addout7, b=shiftout9, addofpre=addof7, out=addout8, addof=addof8);
+
+//shift 10th bits to left nine times with the overflow check.Then add with previous multonebit product with the overflow check.
+
+	multonebit(a=a, b=b[9], out=out10);	
+	shift(in=out10, check=of34, out=shift29, ofcheck=of35);
+	shift(in=shift29, check=of35, out=shift30, ofcheck=of36);
+	shift(in=shift30, check=of36, out=shift31, ofcheck=of37);
+	shift(in=shift31, check=of37, out=shift32, ofcheck=of38);
+	shift(in=shift32, check=of38, out=shift33, ofcheck=of39);
+	shift(in=shift33, check=of39, out=shift34, ofcheck=of40);
+	shift(in=shift34, check=of40, out=shift35, ofcheck=of41);
+	shift(in=shift35, check=of41, out=shift36, ofcheck=of42);
+	shift(in=shift36, check=of42, out=shiftout10, ofcheck=of43);
+	Add16check(a=addout8, b=shiftout10, addofpre=addof8, out=addout9, addof=addof9);
+
+//shift 11th bits to left 10 times with the overflow check.Then add with previous multonebit product with the overflow check.
+
+	multonebit(a=a, b=b[10], out=out11);	
+	shift(in=out11, check=of43, out=shift37, ofcheck=of44);
+	shift(in=shift37, check=of44, out=shift38, ofcheck=of45);
+	shift(in=shift38, check=of45, out=shift39, ofcheck=of46);
+	shift(in=shift39, check=of46, out=shift40, ofcheck=of47);
+	shift(in=shift40, check=of47, out=shift41, ofcheck=of48);
+	shift(in=shift41, check=of48, out=shift42, ofcheck=of49);
+	shift(in=shift42, check=of49, out=shift43, ofcheck=of50);
+	shift(in=shift43, check=of50, out=shift44, ofcheck=of51);
+	shift(in=shift44, check=of51, out=shift45, ofcheck=of52);
+	shift(in=shift45, check=of52, out=shiftout11, ofcheck=of53);
+	Add16check(a=addout9, b=shiftout11, addofpre=addof9, out=addout10, addof=addof10);
+
+//shift 12th bits to left 11 times with the overflow check.Then add with previous multonebit product with the overflow check.
+
+	multonebit(a=a, b=b[11], out=out12);	
+	shift(in=out12, check=of53, out=shift46, ofcheck=of54);
+	shift(in=shift46, check=of54, out=shift47, ofcheck=of55);
+	shift(in=shift47, check=of55, out=shift48, ofcheck=of56);
+	shift(in=shift48, check=of56, out=shift49, ofcheck=of57);
+	shift(in=shift49, check=of57, out=shift50, ofcheck=of58);
+	shift(in=shift50, check=of58, out=shift51, ofcheck=of59);
+	shift(in=shift51, check=of59, out=shift52, ofcheck=of60);
+	shift(in=shift52, check=of60, out=shift53, ofcheck=of61);
+	shift(in=shift53, check=of61, out=shift54, ofcheck=of62);
+	shift(in=shift54, check=of62, out=shift55, ofcheck=of63);
+	shift(in=shift55, check=of63, out=shiftout12, ofcheck=of64);
+	Add16check(a=addout10, b=shiftout12, addofpre=addof10, out=addout11, addof=addof11);
+
+//shift 13th bits to left 12 times with the overflow check.Then add with previous multonebit product with the overflow check.
+
+	multonebit(a=a, b=b[12], out=out13);	
+	shift(in=out13, check=of64, out=shift56, ofcheck=of65);
+	shift(in=shift56, check=of65, out=shift57, ofcheck=of66);
+	shift(in=shift57, check=of66, out=shift58, ofcheck=of67);
+	shift(in=shift58, check=of67, out=shift59, ofcheck=of68);
+	shift(in=shift59, check=of68, out=shift60, ofcheck=of69);
+	shift(in=shift60, check=of69, out=shift61, ofcheck=of70);
+	shift(in=shift61, check=of70, out=shift62, ofcheck=of71);
+	shift(in=shift62, check=of71, out=shift63, ofcheck=of72);
+	shift(in=shift63, check=of72, out=shift64, ofcheck=of73);
+	shift(in=shift64, check=of73, out=shift65, ofcheck=of74);
+	shift(in=shift65, check=of74, out=shift66, ofcheck=of75);
+	shift(in=shift66, check=of75, out=shiftout13, ofcheck=of76);
+	Add16check(a=addout11, b=shiftout13, addofpre=addof11, out=addout12, addof=addof12);
+
+//shift 14th bits to left 13 times with the overflow check.Then add with previous multonebit product with the overflow check.
+
+	multonebit(a=a, b=b[13], out=out14);	
+	shift(in=out14, check=of76, out=shift67, ofcheck=of77);
+	shift(in=shift67, check=of77, out=shift68, ofcheck=of78);
+	shift(in=shift68, check=of78, out=shift69, ofcheck=of79);
+	shift(in=shift69, check=of79, out=shift70, ofcheck=of80);
+	shift(in=shift70, check=of80, out=shift71, ofcheck=of81);
+	shift(in=shift71, check=of81, out=shift72, ofcheck=of82);
+	shift(in=shift72, check=of82, out=shift73, ofcheck=of83);
+	shift(in=shift73, check=of83, out=shift74, ofcheck=of84);
+	shift(in=shift74, check=of84, out=shift75, ofcheck=of85);
+	shift(in=shift75, check=of85, out=shift76, ofcheck=of86);
+	shift(in=shift76, check=of86, out=shift77, ofcheck=of87);
+	shift(in=shift77, check=of87, out=shift78, ofcheck=of88);
+	shift(in=shift78, check=of88, out=shiftout14, ofcheck=of89);
+	Add16check(a=addout12, b=shiftout14, addofpre=addof12, out=addout13, addof=addof13);
+
+//shift 15th bits to left 14 times with the overflow check.Then add with previous multonebit product with the overflow check.
+
+	multonebit(a=a, b=b[14], out=out15);	
+	shift(in=out15, check=of89, out=shift79, ofcheck=of90);
+	shift(in=shift79, check=of90, out=shift80, ofcheck=of91);
+	shift(in=shift80, check=of91, out=shift81, ofcheck=of92);
+	shift(in=shift81, check=of92, out=shift82, ofcheck=of93);
+	shift(in=shift82, check=of93, out=shift83, ofcheck=of94);
+	shift(in=shift83, check=of94, out=shift84, ofcheck=of95);
+	shift(in=shift84, check=of95, out=shift85, ofcheck=of96);
+	shift(in=shift85, check=of96, out=shift86, ofcheck=of97);
+	shift(in=shift86, check=of97, out=shift87, ofcheck=of98);
+	shift(in=shift87, check=of98, out=shift89, ofcheck=of99);
+	shift(in=shift89, check=of99, out=shift90, ofcheck=of100);
+	shift(in=shift90, check=of100, out=shift91, ofcheck=of101);
+	shift(in=shift91, check=of101, out=shift92, ofcheck=of102);
+	shift(in=shift92, check=of102, out=shiftout15, ofcheck=of103);
+	Add16check(a=addout13, b=shiftout15, addofpre=addof13, out=addout14, addof=addof14);
+
+//shift 16th bits to left 15 times with the overflow check.Then add with previous multonebit product with the overflow check.
+
+	multonebit(a=a, b=b[15], out=out16);	
+	shift(in=out16, check=of103, out=shift93, ofcheck=of104);
+	shift(in=shift93, check=of104, out=shift94, ofcheck=of105);
+	shift(in=shift94, check=of105, out=shift95, ofcheck=of106);
+	shift(in=shift95, check=of106, out=shift96, ofcheck=of107);
+	shift(in=shift96, check=of107, out=shift97, ofcheck=of108);
+	shift(in=shift97, check=of108, out=shift98, ofcheck=of109);
+	shift(in=shift98, check=of109, out=shift99, ofcheck=of110);
+	shift(in=shift99, check=of110, out=shift100, ofcheck=of111);
+	shift(in=shift100, check=of111, out=shift101, ofcheck=of112);
+	shift(in=shift101, check=of112, out=shift102, ofcheck=of113);
+	shift(in=shift102, check=of113, out=shift103, ofcheck=of114);  
+	shift(in=shift103, check=of114, out=shift104, ofcheck=of115);
+	shift(in=shift104, check=of115, out=shift105, ofcheck=of116);
+	shift(in=shift105, check=of116, out=shift106, ofcheck=of117);
+	shift(in=shift106, check=of117, out=shiftout16, ofcheck=of118);
+	Add16check(a=addout14, b=shiftout16, addofpre=addof14, out=multout, addof=addof15);
+
+//check if the output is negative, if it is, then there has a overflow.
+	
+	checkfinalbit(a=multout, b=of118, out=ofout);
+	Or(a=addof15, b=ofout, out=of);
+	Or16(a=multout, b=false, out=out);
+}

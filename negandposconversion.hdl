@@ -1,0 +1,9 @@
+//conversion negative to positive and conversion positive to negative.
+
+CHIP negandposconversion{
+	IN in[16];
+	OUT out[16];
+PARTS:
+	Not16(in=in, out=out1);
+	Inc16(in=out1, out=out);
+}

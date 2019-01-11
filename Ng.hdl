@@ -1,0 +1,9 @@
+//if in is a negative number, out 1.
+
+CHIP Ng{
+	IN in[16];
+	OUT out;
+	PARTS:
+	And(a=in[15], b=true, out=out1);
+	Mux(a=false, b=true, sel=out1, out=out);
+}

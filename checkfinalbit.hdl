@@ -1,0 +1,8 @@
+//check the final bit of a whether is positive or negative.
+
+CHIP checkfinalbit{
+	IN a[16], b;
+	OUT out;
+PARTS:
+	Or(a=a[15], b=b, out=out);
+}
