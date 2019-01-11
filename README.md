@@ -1,4 +1,4 @@
-# Nand2Tetris_multpliy_16-bit
+# Nand2Tetris_multpliy_16-bits
 It is a chip that can achieve multpliy 16 bits in hdl based on N2T.
 
 It will cheack whether there has any overflow in multiply.
