@@ -1,4 +1,4 @@
-# Nand2Tetris_multpliy_16-bits
+## Nand2Tetris_multpliy_16-bits
 It is a chip that can achieve multpliy 16 bits in hdl based on N2T.
 
 It will check whether there has any overflow in multiply.
@@ -8,9 +8,9 @@ I will show you this chip's gate diagram and my idea about how to design this ch
 
 However,
 
-**DO NOT PLAGIARIZE IT IN YOUR COURSEWORK / HOMEWORK ！
+**DO NOT PLAGIARIZE IT IN YOUR COURSEWORK / HOMEWORK!**
 
-#### Here is my idea:
+### Here is my idea:
 
 0. First make sure both inputs are positive, if not, turn them into positive numbers by negandposconversion
 chip. Then send them into positivemult chip.
@@ -42,5 +42,5 @@ final output of of.
 identifysign, shift, Mux16, boundcheck, Add16check, multonebit, checkfinalbit, and some basic chip (And,
 Or, Xor...). The more detail will be showed in hdl files.
 
-### Here is the diagram
+### Here is the diagram:
 ![diagram](https://github.com/Can-ZHOU/Nand2Tetris_multpliy_16-bits/blob/master/gate%20diagram.png)
