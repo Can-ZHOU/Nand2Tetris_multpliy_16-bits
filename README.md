@@ -4,11 +4,14 @@ It is a chip that can achieve multpliy 16 bits in hdl based on N2T.
 It will check whether there has any overflow in multiply.
 If there is an overflow, then the output bit "of" will be 1, otherwise, "of" is 0.
 
-I will show you this chip's gate diagram and my idea about how to design this chip as well : )
+I will show you this chip's gate diagram and my idea about how to design this chip as well :)
 
 However,
 
 **DO NOT PLAGIARIZE IT IN YOUR COURSEWORK / HOMEWORK!**
+
+### Here is my diagram:
+![diagram](https://github.com/Can-ZHOU/Nand2Tetris_multpliy_16-bits/blob/master/gate%20diagram.png)
 
 ### Here is my idea:
 
@@ -41,6 +44,3 @@ final output of of.
 6. To achieve mult16 and check overflow, I use these sub chips: positivemult, Ng, negandposconversion,
 identifysign, shift, Mux16, boundcheck, Add16check, multonebit, checkfinalbit, and some basic chip (And,
 Or, Xor...). The more detail will be showed in hdl files.
-
-### Here is the diagram:
-![diagram](https://github.com/Can-ZHOU/Nand2Tetris_multpliy_16-bits/blob/master/gate%20diagram.png)
