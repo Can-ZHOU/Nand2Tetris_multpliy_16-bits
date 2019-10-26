@@ -43,4 +43,4 @@ identifysign, shift, Mux16, boundcheck, Add16check, multonebit, checkfinalbit, a
 Or, Xor...). The more detail will be showed in hdl files.
 
 ### Here is the diagram
-[diagram]!(https://github.com/Can-ZHOU/Nand2Tetris_multpliy_16-bits/blob/master/gate%20diagram.png)
+![diagram](https://github.com/Can-ZHOU/Nand2Tetris_multpliy_16-bits/blob/master/gate%20diagram.png)
